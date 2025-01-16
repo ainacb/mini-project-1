@@ -1,57 +1,52 @@
-// Wait for the DOM to load
-document.addEventListener("DOMContentLoaded", () => {
-  const searchInput = document.getElementById("searchInput");
-  const searchButton = document.getElementById("searchButton");
-  const searchOptions = document.getElementById("searchOptions");
+document.getElementById("searchButton").addEventListener("click", async () => {
+  const query = document.getElementById("searchInput").value;
+  const option = document.getElementById("searchOption").value;
+
+  if (!query) {
+    alert("Please enter a search term.");
+    return;
+  }
+
   const resultsContainer = document.getElementById("results");
+  resultsContainer.innerHTML = "<p>Loading...</p>";
 
-  // Fetch books from Open Library API
-  const fetchBooks = async (query, filterOption) => {
-    try {
-      const response = await fetch(
-        `https://openlibrary.org/search.json?${filterOption}=${query}`
-      );
-      if (!response.ok) throw new Error("Failed to fetch books");
-      const data = await response.json();
-      displayResults(data.docs);
-    } catch (error) {
-      resultsContainer.innerHTML = `<p class="error">${error.message}</p>`;
+  try {
+    const response = await fetch(
+      `https://openlibrary.org/search.json?${option}=${query}`
+    );
+    const data = await response.json();
+
+    if (data.docs && data.docs.length > 0) {
+      resultsContainer.innerHTML = "";
+
+      data.docs.forEach((book) => {
+        const bookElement = document.createElement("div");
+        bookElement.classList.add("result-item");
+
+        bookElement.innerHTML = `
+                    <h2>${book.title}</h2>
+                    <p><strong>Author:</strong> ${
+                      book.author_name ? book.author_name.join(", ") : "N/A"
+                    }</p>
+                    <p><strong>Publication Year:</strong> ${
+                      book.first_publish_year || "N/A"
+                    }</p>
+                    <p><strong>Editions:</strong> ${
+                      book.edition_count || "N/A"
+                    }</p>
+                    <p><strong>Availability:</strong> ${
+                      book.availability ? "Available" : "Unavailable"
+                    }</p>
+                `;
+
+        resultsContainer.appendChild(bookElement);
+      });
+    } else {
+      resultsContainer.innerHTML = "<p>No results found.</p>";
     }
-  };
-
-  // Display results dynamically
-  const displayResults = (books) => {
-    resultsContainer.innerHTML = "";
-    if (books.length === 0) {
-      resultsContainer.innerHTML = "<p>No books found.</p>";
-      return;
-    }
-    books.forEach((book) => {
-      const card = document.createElement("div");
-      card.className = "result-card";
-      card.innerHTML = `
-                <h3>${book.title || "Unknown Title"}</h3>
-                <p><strong>Author:</strong> ${
-                  book.author_name ? book.author_name.join(", ") : "Unknown"
-                }</p>
-                <p><strong>First Published:</strong> ${
-                  book.first_publish_year || "Unknown"
-                }</p>
-                <p><strong>Number of Editions:</strong> ${
-                  book.edition_count || "N/A"
-                }</p>
-                <p><strong>Availability:</strong> ${
-                  book.availability ? book.availability : "Unknown"
-                }</p>
-            `;
-      resultsContainer.appendChild(card);
-    });
-  };
-
-  // Event listener for search
-  searchButton.addEventListener("click", () => {
-    const query = searchInput.value.trim();
-    const filterOption = searchOptions.value;
-    if (query) fetchBooks(query, filterOption);
-  });
+  } catch (error) {
+    resultsContainer.innerHTML =
+      "<p>An error occurred while fetching data. Please try again later.</p>";
+    console.error(error);
+  }
 });
