@@ -1,6 +1,6 @@
 # mini-project-1
 
-# Book Search Web Application
+# Book Finder Web Application
 
 ## Project Overview
 
@@ -56,25 +56,6 @@ This application uses the Open Library API to fetch book data. For more details 
 - Add a feature to save favorite books for later reference.
 - Implement pagination for improved navigation through search results.
 - Enhance the UI with additional filters (e.g., genre, publication year).
-
-## Contribution
-
-Contributions are welcome! To contribute:
-
-1. Fork this repository.
-2. Create a new branch:
-   ```bash
-   git checkout -b feature-name
-   ```
-3. Commit your changes:
-   ```bash
-   git commit -m 'Add some feature'
-   ```
-4. Push to the branch:
-   ```bash
-   git push origin feature-name
-   ```
-5. Open a pull request.
 
 ## License
 
