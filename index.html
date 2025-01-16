@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Books App</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header>
+      <h1>Books Finder</h1>
+      <div class="search-container">
+        <input type="text" id="searchInput" placeholder="Search for books..." />
+        <select id="searchOption">
+          <option value="author">Author</option>
+          <option value="title">Title</option>
+          <option value="publication_date">Publication Date</option>
+          <option value="editions">Number of Editions</option>
+          <option value="availability">Availability</option>
+        </select>
+        <button id="searchButton">Search</button>
+      </div>
+    </header>
+    <main>
+      <section id="results">
+        <!-- Search results will appear here -->
+      </section>
+    </main>
+    <footer>
+      <p>Powered by Open Library API</p>
+    </footer>
+    <script src="script.js"></script>
+  </body>
+</html>
