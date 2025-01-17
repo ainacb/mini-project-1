@@ -15,7 +15,7 @@ document.getElementById("searchButton").addEventListener("click", async () => {
       `https://openlibrary.org/search.json?${option}=${query}`
     );
     const data = await response.json();
-
+    console.log("DATA", data);
     if (data.docs && data.docs.length > 0) {
       resultsContainer.innerHTML = "";
 
@@ -35,7 +35,7 @@ document.getElementById("searchButton").addEventListener("click", async () => {
                       book.edition_count || "N/A"
                     }</p>
                     <p><strong>Availability:</strong> ${
-                      book.availability ? "Available" : "Unavailable"
+                      book.has_fulltext ? "Available" : "Unavailable"
                     }</p>
                 `;
 
