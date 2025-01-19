@@ -32,14 +32,14 @@ header {
 }
 
 .search-container button {
-  background-color: #03dac5;
+  background-color: #10bae8f9;
   color: white;
   cursor: pointer;
   transition: background-color 0.3s;
 }
 
 .search-container button:hover {
-  background-color: #018786;
+  background-color: #56deb1;
 }
 
 #results {
@@ -61,7 +61,7 @@ header {
 
 .result-item h2 {
   font-size: 18px;
-  color: #6200ea;
+  color: #4a54bd;
   margin-bottom: 10px;
 }
 
