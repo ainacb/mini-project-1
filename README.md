@@ -2,31 +2,74 @@
 
 # Book Finder Web Application
 
-## Project Overview
+## Overview
 
-The Book Search Web Application is a user-friendly platform designed to fetch and display book data from the Open Library API. It allows users to search for books using keywords and view detailed information about each book. This project demonstrates proficiency in HTML, CSS, JavaScript, and frontend engineering principles.
+The **Book Search App** is a web-based application designed to help users search for books using the Open Library API. Users can search by title, author, publication date, editions, or availability. The app fetches book data dynamically and displays results with key details such as the book's cover, author, publication year, and more.
 
 ## Features
 
-- **Keyword-based Book Search:** Users can input keywords to search for books across various genres, authors, and titles.
-- **Detailed Book Information:** View comprehensive details about a selected book, including its title, author(s), publication date, and more.
-- **Interactive User Interface:** A visually appealing and responsive design ensures a seamless user experience.
+- Search for books by:
+  - Title
+  - Author
+  - Publication Date
+  - Number of Editions
+  - Availability
+- Display key book details, including:
+  - Cover Image
+  - Title
+  - Author(s)
+  - Publication Year
+  - Edition Count
+  - ISBN Numbers
+  - Language(s)
+  - Median Page Count
+  - Availability Status
 
 ## Technologies Used
 
-- **Frontend:** HTML, CSS, JavaScript
-- **API Integration:** Open Library API
-- **Design Principles:** Modern frontend engineering practices, responsive design, and user-centric interface.
+- **HTML5**: Structure and semantic layout
+- **CSS**: Styling for the application
+- **JavaScript**: Logic and dynamic content rendering
+- **Open Library API**: Data source for book information
+
+## How to Use
+
+1. Open the application in a web browser.
+2. Enter a search term in the input box.
+3. Select a search filter (e.g., Title, Author).
+4. Click the **Search** button.
+5. View the results displayed on the page.
 
 ## API Integration
 
 This application uses the Open Library API to fetch book data. For more details about the API, visit: [Open Library API Documentation](https://openlibrary.org/developers/api)
 
+### Example API Response
+
+A successful API response includes details such as:
+
+- `title`: The book title
+- `author_name`: List of authors
+- `first_publish_year`: Year of first publication
+- `edition_count`: Total number of editions
+- `isbn`: List of ISBN numbers
+- `language`: Available languages
+- `has_fulltext`: Full-text availability
+
+## Error Handling
+
+The app includes basic error handling to:
+
+- Alert users when the input field is empty.
+- Display an error message when no results are found.
+- Handle API errors gracefully with a fallback message.
+
 ## Future Enhancements
 
-- Add a feature to save favorite books for later reference.
-- Implement pagination for improved navigation through search results.
-- Enhance the UI with additional filters (e.g., genre, publication year).
+- Implement pagination for large result sets.
+- Add user authentication and saved searches.
+- Enhance UI/UX with additional styling and animations.
+- Provide detailed book pages with extended information.
 
 ## Acknowledgments
 
