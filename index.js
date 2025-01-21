@@ -1,28 +1,32 @@
 document.getElementById("searchButton").addEventListener("click", async () => {
-  const query = document.getElementById("searchInput").value;
-  const option = document.getElementById("searchOption").value;
+  // event listener - when clicked, an asynchronous function is executed.
+  const query = document.getElementById("searchInput").value; // retrieves the user input
+  const option = document.getElementById("searchOption").value; // retrieves the search option
 
   if (!query) {
     alert("Please enter a search term.");
-    return;
+    return; // ensures the user enters a search term, dsplays an alert if the input is empty and exits the function early.
   }
   const resultsContainer = document.getElementById("results");
-  resultsContainer.innerHTML = "<p>Loading...</p>";
+  resultsContainer.innerHTML = "<p>Loading...</p>"; // display a loading message while data is being fetched.
 
   try {
     const response = await fetch(
       `https://openlibrary.org/search.json?${option}=${query}`
     );
-
     const data = await response.json();
     console.log("DATA", data);
+    // API URL, fetches data from the API and parses it into JSON format.
 
     if (data.docs && data.docs.length > 0) {
-      resultsContainer.innerHTML = "";
+      resultsContainer.innerHTML = ""; // Checks if the API returned book data (data.docs) and if the results array is non-empty.
 
       data.docs.forEach((book) => {
         const bookElement = document.createElement("div");
-        bookElement.classList.add("result-item");
+        bookElement.classList.add("result-item"); // if there are results, it clears the results container and
+        // iterates through the array of books (data.docs) and creates a new div for each book, populating it with book details.
+        // Dynamically generates HTML to display book details, including: cover image (fallback to a placeholder if unavailable),
+        // title, author(s), publication year, edition count, ISBN, language(s), page count, and availability.
 
         const coverImageUrl = book.cover_i
           ? `https://covers.openlibrary.org/b/id/${book.cover_i}-M.jpg`
@@ -67,14 +71,15 @@ document.getElementById("searchButton").addEventListener("click", async () => {
                       book.has_fulltext ? "Available" : "Not Available"
                     }</p>
                 `;
-        resultsContainer.appendChild(bookElement);
+        resultsContainer.appendChild(bookElement); // appends the generated div to the results container.
       });
     } else {
-      resultsContainer.innerHTML = "<p>No results found.</p>";
+      resultsContainer.innerHTML = "<p>No results found.</p>"; // if no results are found, displays a "No results found" message.
     }
   } catch (error) {
     resultsContainer.innerHTML =
       "<p>An error occurred while fetching data. Please try again later.</p>";
-    console.error(error);
+    console.error(error); // Catches errors during the fetch operation or data processing.
+    // Displays an error message in the results container and logs the error in the console.
   }
 });
